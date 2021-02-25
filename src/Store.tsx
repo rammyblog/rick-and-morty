@@ -5,19 +5,30 @@ interface IState {
     favorites: [];
 }
 
+interface IEpisode {
+    type: string;
+    payload: any;
+}
+
 const initialState: IState = {
     episodes: [],
     favorites: [],
 };
 
-export const Store = React.createContext<IState>(initialState);
+export const Store = React.createContext<IState | any>(initialState);
 
-function reducer() {
-    // pass
+function reducer(state: IState, action: IEpisode): IState {
+    switch (action.type) {
+        case 'FETCH_DATA':
+            return { ...state, episodes: action.payload };
+        default:
+            return state;
+    }
 }
 
 export function StoreProvider(props: any): JSX.Element {
+    const [state, dispatch] = React.useReducer(reducer, initialState)
     return (
-        <Store.Provider value={initialState}>{props.children}</Store.Provider>
+        <Store.Provider value={{state, dispatch}}>{props.children}</Store.Provider>
     );
 }
