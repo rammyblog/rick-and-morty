@@ -1,6 +1,6 @@
 export interface IState {
     episodes: Array<IsingleEpisode>;
-    favorites: Array<any>;
+    favorites: Array<IsingleEpisode>;
 }
 
 export interface IAction {
@@ -22,4 +22,15 @@ export interface IsingleEpisode {
     summary: string;
     type: string;
     url: string;
+}
+
+export interface IEpisodeProps {
+    episodes: IsingleEpisode[];
+    store: { state: IState; dispatch: any };
+    toggleFavAction: (
+        state: IState,
+        dispatch: any,
+        episode: IsingleEpisode
+    ) => IAction;
+    favorites: Array<IsingleEpisode>;
 }
