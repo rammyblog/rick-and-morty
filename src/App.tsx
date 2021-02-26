@@ -33,15 +33,15 @@ function App(): JSX.Element {
         });
     };
 
-    console.log(state);
-
     return (
         <>
-            <h1>Rick and Morty</h1>
-            <p>Pick your Favorite episode!!</p>
-            <section>
+            <header className="header">
+                <h1>Rick and Morty</h1>
+                <p>Pick your Favorite episode!!</p>
+            </header>
+            <section className="episode-layout">
                 {state.episodes.map((episode: IsingleEpisode) => (
-                    <section key={episode.id}>
+                    <section className="episode-box" key={episode.id}>
                         <img
                             src={episode.image.medium}
                             alt={`Rick and mort ${episode.name}`}
