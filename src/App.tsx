@@ -2,12 +2,12 @@ import React from 'react';
 import { Store } from './Store';
 function App(): JSX.Element {
     interface IsingleEpisode {
-        _links: object;
+        _links: { self: { href: string } };
         airdate: string;
         airstamp: string;
         airtime: string;
         id: number;
-        image: { medium: string; original: string};
+        image: { medium: string; original: string };
         name: string;
         number: number;
         runtime: number;
@@ -46,6 +46,10 @@ function App(): JSX.Element {
                             src={episode.image.medium}
                             alt={`Rick and mort ${episode.name}`}
                         />
+                        <div>{episode.name}</div>
+                        <section>
+                            Season: {episode.season} Number: {episode.number}
+                        </section>
                     </section>
                 ))}
             </section>
